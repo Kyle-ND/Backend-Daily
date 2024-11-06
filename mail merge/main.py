@@ -8,7 +8,11 @@ def main():
 
     #opening the name file
     invites = open(path, "r").readlines()
-    print(invites)
+    
+    for names in invites:
+        name = names.strip()
+        print(name)
+
 main()
 
 
