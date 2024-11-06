@@ -10,7 +10,7 @@
 from docx import Document
 import os
 
-print("Current Working Directory:", os.getcwd())
+print("Current Working Directory:", os.getcwd()) #Added this for debug perposes
 
 #Creating paths to all the files and folders I will use in this project
 names_path = "Input/Names/inivited_names.txt"
@@ -18,7 +18,7 @@ letter_path = "Input/letters/starting_letter.docx"
 output_path = "Output/ReadyToSend"
 
 #Checking if the output diretory exist
-os.makedirs(output_path, exist_ok=True)
+os.makedirs(output_path, exist_ok=True) #Added this for debug purposes
 
 #Opening the names file and reading it 
 with open(names_path, "r") as names_file:
