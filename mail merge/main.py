@@ -2,7 +2,7 @@ def main():
     #The path of the file for the inivited_name.txt.
     path = r"C:\Users\makho\Documents\My_projects\Backend-Daily\mail merge\Input\Names\inivited_names.txt"
     #Path for the docx file.
-    doc_path = r"C:\Users\makho\Documents\My_projects\Backend-Daily\mail merge\Input\letters\starting_letter.txt"
+    doc_path = r"C:\Users\makho\Documents\My_projects\Backend-Daily\mail merge\Input\letters\starting_letter.docx"
     #The folder for ready letters
     outbox = r"C:\Users\makho\Documents\My_projects\Backend-Daily\mail merge\ReadyToSend"
 
@@ -12,6 +12,9 @@ def main():
     for names in invites:
         name = names.strip()
         print(name)
+
+    letters = open(doc_path, "r").read()
+    print(letters)
 
 main()
 
