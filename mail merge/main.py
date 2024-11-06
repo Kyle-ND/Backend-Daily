@@ -16,7 +16,9 @@ def main():
     for names in invites:
         name = names.strip()
         greetings = greet.replace("[name]",name)
-        mails_ = "ready_to_send.txt"
+        print(greetings)
+
+        mails_ = (f"{name} ready_to_send.docx")
         outbox_path = os.path.join(outbox,mails_)
         with open(outbox_path, 'w') as sent_mail:
             sent_mail.write(greetings)
