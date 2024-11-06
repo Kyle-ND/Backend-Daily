@@ -1,3 +1,5 @@
+import os
+
 def main():
     #The path of the file for the inivited_name.txt.
     path = r"C:\Users\makho\Documents\My_projects\Backend-Daily\mail merge\Input\Names\inivited_names.txt"
@@ -10,12 +12,16 @@ def main():
     invites = open(path, "r").readlines()
     #Opening the docx file
     greet = open(doc_path, "r").read()
-    print(greet)
 
     for names in invites:
         name = names.strip()
         greetings = greet.replace("[name]",name)
-        print(greetings) 
+        mails_ = "ready_to_send.txt"
+        outbox_path = os.path.join(outbox,mails_)
+        with open(outbox_path, 'w') as sent_mail:
+            sent_mail.write(greetings)
+            
+    print(f"Files are saved on the {mails_} file, on {outbox_path} path")
 main()
 
 
