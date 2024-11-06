@@ -8,14 +8,14 @@ def main():
 
     #opening the name file
     invites = open(path, "r").readlines()
-    
+    #Opening the docx file
+    greet = open(doc_path, "r").read()
+    print(greet)
+
     for names in invites:
         name = names.strip()
-        print(name)
-
-    letters = open(doc_path, "r").read()
-    print(letters)
-
+        greetings = greet.replace("[name]",name)
+        print(greetings) 
 main()
 
 
