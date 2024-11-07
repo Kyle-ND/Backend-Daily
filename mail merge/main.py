@@ -22,7 +22,7 @@ ready_path = '/home/wtc/Documents/RepositoryAccounts/Backend-Daily/mail merge/Re
 
 os.makedirs(ready_path, exist_ok=True)
 
-# Populate array of names that are invited
+# Populate array with names that are invited
 with open(invited_names_path, mode='r') as file:
     names = [line.strip() for line in file.readlines()]
 
