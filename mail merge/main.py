@@ -26,8 +26,8 @@ def opening_letter():
         letter = f.readlines()
         
         return letter
-    
-
+final_email = ""   
+contructed_letter = ""
 def sending_letter():
     names = opening_names()
     letter = opening_letter()
@@ -35,8 +35,11 @@ def sending_letter():
     
     for name in names:
         email = constructed_letter.replace("[name]",name)
-        print("="*30)
+        final_email = "".join(email)
+        print("="*30) 
         print(email)
-    print("="*30)
+    
+        with open(f"./ReadyToSend/{name}.docx","w") as file:
+            file.write(final_email)
 sending_letter()  
  
