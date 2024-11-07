@@ -1,5 +1,21 @@
 import os
 
+
+def read_names(path):
+    #opening the name file
+    with open(path, "r") as invites:
+        lines = invites.readlines()
+        name_lst = []
+        for names in lines:
+            name = names.strip()
+            name_lst.append(name)
+    return name_lst
+
+def read_letters(doc_path):
+    #Opening the docx file
+    with open(doc_path, "r") as greet:
+        return greet.read()
+
 def main():
     #The path of the file for the inivited_name.txt.
     path = r"C:\Users\makho\Documents\My_projects\Backend-Daily\mail merge\Input\Names\inivited_names.txt"
@@ -8,20 +24,16 @@ def main():
     #The folder for ready letters
     outbox = r"C:\Users\makho\Documents\My_projects\Backend-Daily\mail merge\ReadyToSend"
 
-    #opening the name file
-    invites = open(path, "r").readlines()
-    #Opening the docx file
-    greet = open(doc_path, "r").read()
+    names = read_names(path)
+    greet = read_letters(doc_path)
 
-    for names in invites:
-        name = names.strip()
-        greetings = greet.replace("[name]",name)
-        print(greetings)
-
+    for name in names:
+        greetings = greet.replace("[name]", name)
         mails_ = (f"{name} ready_to_send.docx")
         outbox_path = os.path.join(outbox,mails_)
-        with open(outbox_path, 'w') as sent_mail:
-            sent_mail.write(greetings)
+
+    with open(outbox_path, 'w') as sent_mail:
+        sent_mail.write(greetings)
             
     print(f"Files are saved on the {mails_} file, on {outbox_path} path")
 main()
