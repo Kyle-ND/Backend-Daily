@@ -16,15 +16,26 @@ def names_file():
         names.append(clean)
     return names
 
-def letter(names):
+def letter(name):
     with open("./Input/letters/starting_letter.docx", "r") as file:
-        content = file.read()
-    for name in names:
-        if "[name]" in content:
-            content = content.replace("[name]",name)
-        # if name in content:
-        #     content = content.replace(name,names)
-    print(content)
+        content = file.readlines()
+        
+    if "[name]" in content[0]:
+            content[0] = content[0].replace("[name]",name)
+    text = "".join(content)
     
-            
-letter(names_file())
+    with open(f"./ReadyToSend/{name}.docx", "w") as file:
+            file.write(text)
+        
+    print(text)
+    
+    
+    
+def main():
+    names = names_file()
+    for name in names:
+        letter(name)
+        
+
+main()
+
