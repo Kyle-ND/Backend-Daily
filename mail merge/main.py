@@ -2,19 +2,26 @@ import os
 
 
 def read_names(path):
-    #opening the name file
-    with open(path, "r") as invites:
-        lines = invites.readlines()
-        name_lst = []
-        for names in lines:
-            name = names.strip()
-            name_lst.append(name)
-    return name_lst
+    try:
+        #opening the name file
+        with open(path, "r") as invites:
+            lines = invites.readlines()
+            name_lst = []
+            for names in lines:
+                name = names.strip()
+                name_lst.append(name)
+        return name_lst
+    except FileNotFoundError:
+        print(f"Error: The file on the {path} was found.")
+    return None
 
 def read_letters(doc_path):
-    #Opening the docx file
-    with open(doc_path, "r") as greet:
-        return greet.read()
+    try:
+        #Opening the docx file
+        with open(doc_path, "r") as greet:
+            return greet.read()
+    except FileNotFoundError:
+        print(f"Error: The path of the letter {doc_path} not found")
 
 def main():
     #The path of the file for the inivited_name.txt.
@@ -31,13 +38,13 @@ def main():
         greetings = greet.replace("[name]", name)
         mails_ = (f"{name} ready_to_send.docx")
         outbox_path = os.path.join(outbox,mails_)
-
-    with open(outbox_path, 'w') as sent_mail:
-        sent_mail.write(greetings)
-            
-    print(f"Files are saved on the {mails_} file, on {outbox_path} path")
+    try:
+        with open(outbox_path, 'w') as sent_mail:
+            sent_mail.write(greetings)
+        print(f"Files are saved on the {mails_} file, on {outbox_path} path")
+    except FileNotFoundError:
+        print(f"Error: Could not write on the {outbox_path}")
 main()
-
 
 #TODO: Create a letter using starting_letter.docx 
 #for each name in invited_names.txt
