@@ -9,35 +9,31 @@
 
 import os
 
-# Define directory and file paths
-# dir_name = '/home/wtc/Documents/RepositoryAccounts/Backend-Daily/mail merge'
-# invited_names_path = os.path.join(dir_name, 'Names/invited_names.txt')
-# starting_letter_path = os.path.join(dir_name, 'letters/starting_letter.docx')
-# ready_path = os.path.join(dir_name, 'ReadyToSend')
-
-invited_names_path = '/home/wtc/Documents/RepositoryAccounts/Backend-Daily/mail merge/Names/inivited_names.txt'
-starting_letter_path = '/home/wtc/Documents/RepositoryAccounts/Backend-Daily/mail merge/letters/starting_letter.docx'
-ready_path = '/home/wtc/Documents/RepositoryAccounts/Backend-Daily/mail merge/ReadyToSend'
+#Define directory and file paths
+invited_names_path = os.path.abspath('mail merge/Names/inivited_names.txt')
+starting_letter_path = os.path.abspath('mail merge/letters/starting_letter.docx')
+ready_path = os.path.abspath('ReadyToSend')
 
 
+# Ensure the ReadyToSend directory exists
 os.makedirs(ready_path, exist_ok=True)
 
-# Populate array with names that are invited
+# Populate array with names 
 with open(invited_names_path, mode='r') as file:
     names = [line.strip() for line in file.readlines()]
 
-# Get the contents of the letter template
+# Read the starting contents
 with open(starting_letter_path, mode='r') as starting_file:
     starting_content = starting_file.read()
 
-# Modify the content of letter template, and write to a new file
+# Create personalized letters by modifying starting_contents and write to new file
 for name in names:
-    modified_content = starting_content.replace('[name]', name)
     modified_letter_path = os.path.join(ready_path, f'{name}.docx')
+    modified_content = starting_content.replace('[name]', name)
 
+    # Write the modified content to a new file
     with open(modified_letter_path, mode='w') as file:
         file.write(modified_content)
-
              
 
 
