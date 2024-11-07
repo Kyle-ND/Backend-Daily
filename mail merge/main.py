@@ -16,27 +16,18 @@ def opening_names():
         for line in names:
             name = line.strip()
             real_names.append(name)
-        print(real_names)
+        
         return real_names
-    
+   
+
 def opening_letter():
     with open("./Input/letters/starting_letter.docx","r")as f:
-        letter = f.readline()
-        lines = letter.split("\n")
-        words = lines[0].split()
-        print(words)
-        return words
+        letter = f.read()
+        
+    for name in real_names:
+        email = letter.replace("[name]",name)
+        print(email)
     
-    for name in words:
-        if name == "[name]":
-            name = name.replace("[name]",real_names)
-
-        else:
-            print("No name")
-
-    return
     
-   
-   
-    
-opening_letter()    
+opening_letter()  
+ 
