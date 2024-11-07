@@ -9,8 +9,9 @@
 
 
    
-real_names = []
+
 def opening_names():
+    real_names = []
     with open("./Input/Names/inivited_names.txt","r") as file:
         names = file.readlines()
         for line in names:
@@ -22,12 +23,20 @@ def opening_names():
 
 def opening_letter():
     with open("./Input/letters/starting_letter.docx","r")as f:
-        letter = f.read()
+        letter = f.readlines()
         
-    for name in real_names:
-        email = letter.replace("[name]",name)
+        return letter
+    
+
+def sending_letter():
+    names = opening_names()
+    letter = opening_letter()
+    constructed_letter = "".join(letter)
+    
+    for name in names:
+        email = constructed_letter.replace("[name]",name)
+        print("="*30)
         print(email)
-    
-    
-opening_letter()  
+    print("="*30)
+sending_letter()  
  
