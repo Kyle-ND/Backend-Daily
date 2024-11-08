@@ -36,6 +36,5 @@ try:
         with open(modified_letter_path, mode='w') as file:
             file.write(modified_content)
              
-except FileNotFoundError:
-    print(f'Error : file not found')
-
+except FileNotFoundError as e:
+    print(f"Error: {e}")
