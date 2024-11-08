@@ -29,7 +29,7 @@ def read_docx_file():
     for i in n:
         for j in clean_letter:
             if j == 'Dear [name],':
-                j = j.replace('Dear [name],', f'Dear {i}')
+                j = j.replace('Dear [name],', f'Dear {i},')
                 new_letter.append(j)
             else:
                 new_letter.append(j)
