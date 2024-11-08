@@ -18,22 +18,24 @@ ready_path = os.path.abspath('ReadyToSend')
 # Ensure the ReadyToSend directory exists
 os.makedirs(ready_path, exist_ok=True)
 
-# Populate array with names 
-with open(invited_names_path, mode='r') as file:
-    names = [line.strip() for line in file.readlines()]
+try:
+    # Populate array with names 
+    with open(invited_names_path, mode='r') as file:
+        names = [line.strip() for line in file.readlines()]
 
-# Read the starting contents
-with open(starting_letter_path, mode='r') as starting_file:
-    starting_content = starting_file.read()
+    # Read the starting contents
+    with open(starting_letter_path, mode='r') as starting_file:
+        starting_content = starting_file.read()
 
-# Create personalized letters by modifying starting_contents and write to new file
-for name in names:
-    modified_letter_path = os.path.join(ready_path, f'{name}.docx')
-    modified_content = starting_content.replace('[name]', name)
+    # Create personalized letters by modifying starting_contents and write to new file
+    for name in names:
+        modified_letter_path = os.path.join(ready_path, f'{name}.docx')
+        modified_content = starting_content.replace('[name]', name)
 
-    # Write the modified content to a new file
-    with open(modified_letter_path, mode='w') as file:
-        file.write(modified_content)
+        # Write the modified content to a new file
+        with open(modified_letter_path, mode='w') as file:
+            file.write(modified_content)
              
-
+except FileNotFoundError:
+    print(f'Error : file not found')
 
